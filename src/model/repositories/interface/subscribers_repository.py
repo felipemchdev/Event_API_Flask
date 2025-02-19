@@ -5,8 +5,8 @@ from src.model.entities.inscritos import Inscritos
 class SubscribersRepositoryInterface(ABC):
     
     @abstractmethod
-    def insert(self, subscriber_infos: dict) -> None: pass
+    def insert(self, name: str, email: str, link: str, evento_id: int) -> None: pass
 
 
     @abstractmethod
-    def select_subscriber(self, email: str,evento_id: int) -> Inscritos: pass
+    def select_subscriber(self, email: str) -> Inscritos: pass

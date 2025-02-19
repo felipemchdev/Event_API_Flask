@@ -1,5 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from src.model.configs.base import Base
 
 class DBConnectionHandler:
     def __init__(self):
@@ -9,6 +10,8 @@ class DBConnectionHandler:
         
     def __create_database_engine(self):
         engine = create_engine(self.__connection_string)
+
+        Base.metadata.create_all(engine)
         return engine
 
     def __enter__(self):

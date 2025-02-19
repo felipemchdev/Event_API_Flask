@@ -6,9 +6,9 @@ def subscribers_creator_validator(resquest:any):
         "data": {
             "type": "dict",
             "schema": {
-                "name": {"type": "string", "required": True , "empty": False}   
-                "email": {"type": "string", "required": True , "empty": False}
-                "link": {"type": "string", "required": False , "empty": False}
+                "name": {"type": "string", "required": True , "empty": False},   
+                "email": {"type": "string", "required": True , "empty": False},
+                "link": {"type": "string", "required": False , "empty": False},
                 "evento_id": {"type": "integer", "required": True , "empty": False}
             }
         }
@@ -17,4 +17,4 @@ def subscribers_creator_validator(resquest:any):
     response = body_validator.validate(resquest.json)
     
     if response is False:
-        print(body_validator.errors)
+        raise Exception(body_validator.errors)
