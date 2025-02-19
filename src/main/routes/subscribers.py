@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 
-subscribers_route_bp = Blueprint('subscribers_route', __name__)
+subscribers_route_bp = Blueprint('subscribers', __name__)
 
 from src.http_types import http_response
 from src.validators.subscribers_creator_validator import subscribers_creator_validator
