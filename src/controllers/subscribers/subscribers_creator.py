@@ -13,12 +13,12 @@ class SubscribersCreator:
         link = subscriber_info.get("link")  # opcional
         evento_id = subscriber_info["evento_id"]
 
-        self.__check_subscriber(email)
+        self.__check_subscriber(email, evento_id)
         self.__insert_subscriber(name, email, link, evento_id)
         return self.__format_response(name, email, link, evento_id)
 
-    def __check_subscriber(self, email: str) -> None:
-        response = self.__subscribers_repo.select_subscriber(email)
+    def __check_subscriber(self, email: str, evento_id: int) -> None:
+        response = self.__subscribers_repo.select_subscriber(email, evento_id)
         if response: 
             raise Exception("Subscriber already exists")
 

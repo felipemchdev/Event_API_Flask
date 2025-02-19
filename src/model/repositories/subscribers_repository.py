@@ -1,8 +1,8 @@
 from src.model.configs.connection import DBConnectionHandler
 from src.model.entities.inscritos import Inscritos
 from .interface.subscribers_repository import SubscribersRepositoryInterface
-from sqlalchemy import func
-
+from sqlalchemy import func, desc
+from typing import List, Optional, Tuple
 
 class SubscribersRepository(SubscribersRepositoryInterface):
     def insert(self, name: str, email: str, link: str, evento_id: int) -> None:
@@ -20,7 +20,7 @@ class SubscribersRepository(SubscribersRepositoryInterface):
                 db.session.rollback()
                 raise exception
 
-    def select_subscriber(self, email: str) -> Inscritos:
+    def select_subscriber(self, email: str, evento_id: int) -> Optional[Inscritos]:
         with DBConnectionHandler() as db:
             data = (
                 db.session
@@ -31,29 +31,27 @@ class SubscribersRepository(SubscribersRepositoryInterface):
             )
             return data
 
-
-    def select_subscribers_by_link(self, link: str, event_id: int) -> Inscritos:
+    def select_subscribers_by_link(self, link: Optional[str], event_id: int) -> List[Inscritos]:
         with DBConnectionHandler() as db:
-            data = (
+            query = (
                 db.session
                 .query(Inscritos)
-                .filter(Inscritos.link == link)
                 .filter(Inscritos.evento_id == event_id)
-            .all()
             )
-            return data
+            
+            if link:
+                query = query.filter(Inscritos.link == link)
+            
+            return query.all()
 
-    def get_ranking(self, event_id: int) -> tuple:
+    def get_ranking(self, event_id: int) -> List[Tuple[str, int]]:
         with DBConnectionHandler() as db:
            result = (
             db.session
                 .query(Inscritos.link,
                 func.count(Inscritos.id).label("total")
                 )
-                .filter(
-                    Inscritos.evento_id == event_id,
-                    Inscritos.link.isnot(None)
-                )
+                .filter(Inscritos.evento_id == event_id)
                 .group_by(Inscritos.link)
                 .order_by(desc("total"))
                 .all()
