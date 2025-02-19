@@ -1,4 +1,4 @@
-This is an API for a application developed in NLW Connect 3-Day Course.
+This is an API for an Events Subscription Platform developed in NLW Connect 3-Day Course.
 
 Liked what u saw here? 
 
