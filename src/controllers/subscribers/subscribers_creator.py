@@ -10,7 +10,7 @@ class SubscribersCreator:
         subscriber_info = http_request.body["data"]
         name = subscriber_info["name"]
         email = subscriber_info["email"]
-        link = subscriber_info.get("link")  # opcional
+        link = subscriber_info.get("link")
         evento_id = subscriber_info["evento_id"]
 
         self.__check_subscriber(email, evento_id)

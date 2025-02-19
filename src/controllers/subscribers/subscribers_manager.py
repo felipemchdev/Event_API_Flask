@@ -11,7 +11,7 @@ class SubscribersManager:
     def get_subscribers_by_link(self, http_request: HttpRequest) -> HttpResponse:
         try:
             event_id = http_request.params["event_id"]
-            link = http_request.params.get("link")  # Using get() to make link optional
+            link = http_request.params.get("link")
             subs = self.__subscribers_repo.select_subscribers_by_link(link, event_id)
             return self.__format_subs_by_link(subs)
         except KeyError as e:
