@@ -1,7 +1,26 @@
-This is an API for an Events Subscription Platform developed in NLW Connect 3-Day Course.
+Disclaimer: This is an API for an Events Subscription Platform developed in NLW Connect 3-Day Course.
 
-Liked what u saw here? 
+# 🌐 Event API Flask
 
-Linkedin: https://www.linkedin.com/in/felipemch/
-Github: https://github.com/felipemchdev (u are here lol)
-Portifolio: https://felipemchportifolio.github.io/
+## Características
+- API RESTful desenvolvida com Flask  
+- Gerenciamento de eventos (CRUD)  
+- Integração com banco de dados (Usado DBeaver nos testes)  
+- Funcionamento de localhost usando POSTMAN  
+
+---
+
+## Requisitos
+- Python 3.8+  
+- Flask  
+- Aplicação SQL (Exemplo: DBeaver)  
+- SQLAlchemy  
+
+---
+
+## Instalação
+
+### Clone este repositório:
+```bash
+git clone https://github.com/felipemchdev/Event_API_Flask.git
+cd Event_API_Flask
